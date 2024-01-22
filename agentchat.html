@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+	<style type='text/css'>
+		.embeddedServiceHelpButton .helpButton .uiButton {
+			background-color: #005290;
+			font-family: "Arial", sans-serif;
+		}
+		.embeddedServiceHelpButton .helpButton .uiButton:focus {
+			outline: 1px solid #005290;
+		}
+	</style>
+
+	<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+	<script type='text/javascript'>
+		var initESW = function(gslbBaseURL) {
+			embedded_svc.settings.displayHelpButton = true; //Or false
+			embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+			embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+			embedded_svc.settings.entryFeature = 'LiveAgent';
+
+			embedded_svc.init(
+				'https://gmailcompoc7-dev-ed.develop.my.salesforce.com',
+				'https://gmailcompoc7-dev-ed.develop.my.site.com/',
+				gslbBaseURL,
+				'00D5g00000LRizM',
+				'Chat_Agents',
+				{
+					baseLiveAgentContentURL: 'https://c.la2-c1-ukb.salesforceliveagent.com/content',
+					deploymentId: '5725g000000lDeP',
+					buttonId: '5735g000000lH3N',
+					baseLiveAgentURL: 'https://d.la2-c1-ukb.salesforceliveagent.com/chat',
+					eswLiveAgentDevName: 'Chat_Agents',
+					isOfflineSupportEnabled: false
+				}
+			);
+		};
+
+		if (!window.embedded_svc) {
+			var s = document.createElement('script');
+			s.setAttribute('src', 'https://gmailcompoc7-dev-ed.develop.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+			s.onload = function() {
+				initESW(null);
+			};
+			document.body.appendChild(s);
+		} else {
+			initESW('https://service.force.com');
+		}
+	</script>
+</html>
