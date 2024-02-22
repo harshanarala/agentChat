@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Attempt</title>
 </head>
 
 <body>
-    <h1> Testing Web Chat Salesforce </h1>
+    <h1>Testing Web Chat Salesforce</h1>
+
+    <script type='text/javascript' src='https://arc-phss--digitaleng.sandbox.my.site.com/ESWMessagingserviceusin1707397130493/assets/js/bootstrap.min.js'></script>
+    
+    <a id="liveagent_button_online_573d0000000PEc5" href="javascript://" onclick="initEmbeddedMessaging()">
+        <span class="live-chat-text">Live Chat</span>
+    </a>
+    <div id="liveagent_button_offline_573d0000000PEc5" style="display: none;"><!--Offline Chat Content--></div>
+    
     <script type='text/javascript'>
         function initEmbeddedMessaging() {
             try {
-                embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
-
+                embeddedservice_bootstrap.settings.language = 'en_US';
+                
                 embeddedservice_bootstrap.init(
                     '00D3J0000001Jh4',
                     'Messaging_service_using_web',
@@ -22,42 +27,24 @@
                         scrt2URL: 'https://arc-phss--digitaleng.sandbox.my.salesforce-scrt.com'
                     }
                 );
+                console.log('1');
+                launchChat(); // Corrected function call
+                console.log('2');
             } catch (err) {
                 console.error('Error loading Embedded Messaging: ', err);
             }
-        };
-
-        function launchChat() {
-            embeddedservice_bootstrap.utilAPI.launchChat()
-                .then(() => {
-                    // Success handler used to perform actions
-                    // when the chat client launches successfully.
-                    // For example, create a method that disables the launch chat button.
-                    disableLaunchChatButton();
-                }).catch(() => {
-                    // Error handler used to perform actions
-                    // if the chat client fails to launch.
-                    // For example, create a method that hides the launch chat button.
-                    hideLaunchChatButton();
-                }).finally(() => {
-                    // Finally handler used to perform any clean-up actions
-                    // regardless of whether the chat client launches successfully or not.
-                    // For example, create a method that logs the user's attempt to chat.
-                    logEndUserAttemptToChat();
-                });
         }
-
+        
+        function launchChat() {
+            console.log('Started');
+            embeddedservice_bootstrap.utilAPI.launchChat()
+            .then(() => {
+                disableLaunchChatButton();
+            }).catch(() => {
+                hideLaunchChatButton();
+            }).finally(() => {
+                logEndUserAttemptToChat();
+            });
+        }
     </script>
-    <script type='text/javascript'
-        src='https://arc-phss--digitaleng.sandbox.my.site.com/ESWMessagingserviceusin1707397130493/assets/js/bootstrap.min.js'> </script>
-
-    <a id="liveagent_button_online_573d0000000PEc5" href="javascript://Chat"  
-        onclick="launchChat()"> 
-        <span class="live-chat-text">Live Chat</span>
-        <sp </a>
-            <div id="liveagent_button_offline_573d0000000PEc5" style="display: none;"><!--Offline Chat Content--></div>
-
-
 </body>
-
-</html>
