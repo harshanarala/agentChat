@@ -1,27 +1,51 @@
 <!DOCTYPE html>
-<html><head>
-	<script type='text/javascript'>
-	function initEmbeddedMessaging() {
-		try {
-			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
-
-			embeddedservice_bootstrap.init(
-				'00D3J0000001Jh4',
-				'Messaging_service_using_web',
-				'https://arc-phss--digitaleng.sandbox.my.site.com/ESWMessagingserviceusin1707397130493',
-				{
-					scrt2URL: 'https://arc-phss--digitaleng.sandbox.my.salesforce-scrt.com'
-				}
-			);
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
-</script>
-<script type='text/javascript' src='https://arc-phss--digitaleng.sandbox.my.site.com/ESWMessagingserviceusin1707397130493/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-</head>
-	<body>harsha test</body>
-	
-	
-
+<html>
+	<head>
+		<script type='text/javascript'>
+			function initEmbeddedMessaging() {
+			    try {
+				  embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+			
+				  embeddedservice_bootstrap.init(
+					'00D3J0000001Jh4',
+					'Messaging_service_using_web',
+					'https://arc-phss--digitaleng.sandbox.my.site.com/ESWMessagingserviceusin1707397130493',
+					{
+					      scrt2URL: 'https://arc-phss--digitaleng.sandbox.my.salesforce-scrt.com'
+					}
+				  );
+			    setTimeout(() => {
+				  hideChat();
+			    }, 100);
+			    } catch (err) {
+				  console.error('Error loading Embedded Messaging: ', err);
+			    }
+			};
+			function hideChat() {
+			setTimeout(() => {
+			    embeddedservice_bootstrap.utilAPI.hideChatButton();
+			    }, 1100);
+			};
+			function launchChat() {
+			    embeddedservice_bootstrap.utilAPI.launchChat()
+			    .then(() => {
+				  disableLaunchChatButton();
+			    }).catch(() => {
+				  hideLaunchChatButton();
+			    }).finally(() => {
+				  logEndUserAttemptToChat();
+			    });
+			}
+		</script>
+		<script type='text/javascript' src='https://arc-phss--digitaleng.sandbox.my.site.com/ESWMessagingserviceusin1707397130493/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'>
+		</script>
+	</head>
+	<body>
+		<div class="footer-chat">
+			<a href="#" onclick="launchChat()">
+				<img alt="LiveAgent" src="https://raw.githubusercontent.com/harshanarala/chatIcon/main/Online_Button.png" />
+				<span class="live-chat-text">Live Chat</span>
+			</a>
+		</div>
+	</body>
 </html>
