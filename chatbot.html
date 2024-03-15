@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<script type='text/javascript'>
-			function initEmbeddedMessaging() {
+			function initEmbeddedMessagingFooter() {
 			    try {
 				  embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 			
@@ -15,18 +15,18 @@
 					}
 				  );
 			    setTimeout(() => {
-				  hideChat();
+				  hideChatFooter();
 			    }, 100);
 			    } catch (err) {
 				  console.error('Error loading Embedded Messaging: ', err);
 			    }
 			};
-			function hideChat() {
-			setTimeout(() => {
-			    embeddedservice_bootstrap.utilAPI.hideChatButton();
-			    }, 1100);
+			function hideChatFooter() {
+				setTimeout(() => {
+				embeddedservice_bootstrap.utilAPI.hideChatButton();
+				}, 1100);
 			};
-			function launchChat() {
+			function launchFooterChat() {
 			    embeddedservice_bootstrap.utilAPI.launchChat()
 			    .then(() => {
 				  disableLaunchChatButton();
@@ -37,12 +37,12 @@
 			    });
 			}
 		</script>
-		<script type='text/javascript' src='https://arc-phss--digitaleng.sandbox.my.site.com/ESWMessagingserviceusin1707397130493/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'>
+		<script type='text/javascript' src='https://arc-phss--digitaleng.sandbox.my.site.com/ESWMessagingserviceusin1707397130493/assets/js/bootstrap.min.js' onload='initEmbeddedMessagingFooter()'>
 		</script>
 	</head>
 	<body>
 		<div class="footer-chat">
-			<a href="#" onclick="launchChat()">
+			<a href="#" onclick="launchFooterChat()">
 				<img alt="LiveAgent" src="https://raw.githubusercontent.com/harshanarala/chatIcon/main/Online_Button.png" />
 				<span class="live-chat-text">Live Chat</span>
 			</a>
